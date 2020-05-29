@@ -34,6 +34,16 @@
                 <ListBox x:Name="listBoxPesel" Height="180" Margin="8,0,10,21" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Sprawdź numer PESEL" HorizontalAlignment="Left" Height="505" Margin="307,51,0,0" VerticalAlignment="Top" Width="465"/>
+        <GroupBox Header="Sprawdź numer PESEL" HorizontalAlignment="Left" Height="505" Margin="307,51,0,0" VerticalAlignment="Top" Width="465">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Numer PESEL:" HorizontalAlignment="Left" Margin="42,12,0,-12"/>
+                <TextBox x:Name="peselTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,18,0,0" Grid.Column="1"/>
+                <Button x:Name="checkButton" Content="Sprawdź numer PESEL" Grid.Column="1" HorizontalAlignment="Left" Margin="40,71,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

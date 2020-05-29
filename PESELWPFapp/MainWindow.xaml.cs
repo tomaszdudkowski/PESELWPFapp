@@ -18,6 +18,7 @@ namespace PESELWPFapp
             InitializeComponent();
         }
 
+        #region Method
         private static int[] ToDigitArray(int n)
         {
             int[] temp = { 0, 0, 0, 0 };
@@ -97,55 +98,66 @@ namespace PESELWPFapp
         private int CheckYear(int year, int month)
         {
             int century = 0;
-            if(year >= 1800 && year <= 1899)
+            if (year >= 1800 && year <= 1899)
             {
-                if(month <= 9)
+                if (month <= 9)
                 {
                     century = 8;
-                } else
+                }
+                else
                 {
                     century = 9;
                 }
-            } else if(year >= 1900 && year <= 1999)
+            }
+            else if (year >= 1900 && year <= 1999)
             {
-                if(month <= 9)
+                if (month <= 9)
                 {
                     century = 0;
-                } else
+                }
+                else
                 {
                     century = 1;
                 }
-            } else if(year >= 2000 && year <= 2099)
+            }
+            else if (year >= 2000 && year <= 2099)
             {
-                if(month <= 9)
+                if (month <= 9)
                 {
                     century = 2;
-                } else
+                }
+                else
                 {
                     century = 3;
                 }
-            } else if(year >= 2100 && year <= 2199)
+            }
+            else if (year >= 2100 && year <= 2199)
             {
-                if(month <= 9)
+                if (month <= 9)
                 {
                     century = 4;
-                } else
+                }
+                else
                 {
                     century = 5;
                 }
-            } else if(year >= 2200 && year <= 2299)
+            }
+            else if (year >= 2200 && year <= 2299)
             {
-                if(month <= 9)
+                if (month <= 9)
                 {
                     century = 6;
-                } else
+                }
+                else
                 {
                     century = 7;
                 }
             }
             return century;
         }
+        #endregion
 
+        #region GeneratePESELbutton
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int[] PESEL = new int[11];
@@ -171,7 +183,7 @@ namespace PESELWPFapp
 
             listBoxPesel.Items.Clear();
 
-            for (int i = fromSeries; i < toSeries; i++)
+            for (int i = fromSeries; i <= toSeries; i++)
             {
                 if (i % 10 == 0 && WomanRadioButton.IsChecked == true)
                 {
@@ -207,5 +219,16 @@ namespace PESELWPFapp
                 }
             }
         }
+        #endregion
+
+        #region CheckPESELNumber
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            long PESEL = Int64.Parse(peselTextBox.Text);
+            int[] arrayPESEL = ToolsLibrary.Helpers.LongToIntArray(PESEL);
+
+            
+        }
+        #endregion
     }
 }
