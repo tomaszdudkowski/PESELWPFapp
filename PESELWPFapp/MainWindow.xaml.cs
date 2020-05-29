@@ -225,7 +225,27 @@ namespace PESELWPFapp
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             long PESEL = Int64.Parse(peselTextBox.Text);
-            int[] arrayPESEL = ToolsLibrary.Helpers.LongToIntArray(PESEL);
+
+            int length = peselTextBox.Text.Length;
+            int[] arrayPESEL = ToolsLibrary.Helpers.LongToIntArray(PESEL, length);
+
+            if(ToolsLibrary.PESELlib.SumaKontrolna(arrayPESEL) == true)
+            {
+                SubWindow subWindow = new SubWindow();
+                subWindow.Show();
+                subWindow.yearTextBox.Text = ToolsLibrary.PESELlib.ZwrocRokUrodzenia(arrayPESEL[0], arrayPESEL[1], arrayPESEL[2]).ToString();
+                subWindow.monthTextBox.Text = ToolsLibrary.PESELlib.NazwaMiesiaca(ToolsLibrary.PESELlib.ZwrocMiesiacUrodzenia(arrayPESEL[2], arrayPESEL[3]));
+                string day = arrayPESEL[4].ToString() + arrayPESEL[5].ToString();
+                subWindow.dayTextBox.Text = day;
+                subWindow.weekDayTextBox.Text = ToolsLibrary.PESELlib.NazwaDniaTygodnia(PESELlib.ZwrocDzienUrodzenia(Int32.Parse(subWindow.yearTextBox.Text), PESELlib.ZwrocMiesiacUrodzenia(arrayPESEL[2], arrayPESEL[3]), arrayPESEL[4], arrayPESEL[5]));
+                subWindow.peselTextBox.Text = peselTextBox.Text;
+                subWindow.genderTextBox.Text = ToolsLibrary.PESELlib.Plec(arrayPESEL[6], arrayPESEL[7], arrayPESEL[8], arrayPESEL[9]);
+            } else
+            {
+                AlertSubWindow alertSubWindow = new AlertSubWindow();
+                alertSubWindow.Show();
+                alertSubWindow.AlertLabel.Content = "Nieprawidłowy numer PESEL";
+            }
 
             
         }

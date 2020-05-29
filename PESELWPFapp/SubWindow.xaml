@@ -7,6 +7,21 @@
         mc:Ignorable="d"
         Title="SubWindow" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="Numer PESEL:" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top"/>
+        <Label Content="Rok urodzenia:" HorizontalAlignment="Left" Margin="121,72,0,0" VerticalAlignment="Top"/>
+        <Label Content="Miesiąc urodzenia:" HorizontalAlignment="Left" Margin="121,113,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dzień urodzenia:" HorizontalAlignment="Left" Margin="121,165,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dzień tygodnia:" HorizontalAlignment="Left" Margin="121,219,0,0" VerticalAlignment="Top"/>
+        <Label Content="Płeć:" HorizontalAlignment="Left" Margin="121,265,0,0" VerticalAlignment="Top"/>
+        <Label Content="Seria PESEL:" HorizontalAlignment="Left" Margin="121,312,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="peselTextBox" HorizontalAlignment="Left" Margin="458,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="yearTextBox" HorizontalAlignment="Left" Margin="322,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="monthTextBox" HorizontalAlignment="Left" Margin="322,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="dayTextBox" HorizontalAlignment="Left" Margin="322,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="weekDayTextBox" HorizontalAlignment="Left" Margin="322,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="genderTextBox" HorizontalAlignment="Left" Margin="322,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="seriesTextBox" HorizontalAlignment="Left" Margin="322,320,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="okButton" Content="OK" HorizontalAlignment="Center" Margin="0,365,0,0" VerticalAlignment="Top" Width="84" Height="36" Click="okButton_Click"/>
+
     </Grid>
 </Window>

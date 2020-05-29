@@ -13,16 +13,16 @@ using System.Windows.Shapes;
 namespace PESELWPFapp
 {
     /// <summary>
-    /// Interaction logic for SubWindow.xaml
+    /// Interaction logic for AlertSubWindow.xaml
     /// </summary>
-    public partial class SubWindow : Window
+    public partial class AlertSubWindow : Window
     {
-        public SubWindow()
+        public AlertSubWindow()
         {
             InitializeComponent();
         }
 
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
