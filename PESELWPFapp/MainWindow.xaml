@@ -15,11 +15,20 @@
                     <ColumnDefinition Width="169*"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="yearLabel" Content="Rok:" Margin="20,15,0,0" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="yearTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,20,0,0" Grid.Column="1"/>
+                <StackPanel Margin="20,18,0,0" Grid.Column="1">
+                    <ComboBox x:Name="yearComboBox" Width="120" SelectionChanged="yearComboBox_SelectionChanged"/>
+                </StackPanel>
+                <!--<TextBox x:Name="yearTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,20,0,0" Grid.Column="1"/>-->
                 <Label x:Name="monthLabel" Content="Miesiąc:" Margin="20,45,0,0" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="monthTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,50,0,0" Grid.Column="1"/>
+                <StackPanel Margin="20,48,0,0" Grid.Column="1">
+                    <ComboBox x:Name="monthComboBox" Width="120" SelectionChanged="monthComboBox_SelectionChanged"/>
+                </StackPanel>
+                <!--<TextBox x:Name="monthTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,50,0,0" Grid.Column="1"/>-->
                 <Label x:Name="dayLabel" Content="Dzień:" Margin="20,75,0,0" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="dayTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,80,0,0" Grid.Column="1"/>
+                <StackPanel Margin="20,78,0,0" Grid.Column="1">
+                    <ComboBox x:Name="dayComboBox" Width="120"/>
+                </StackPanel>
+                <!--<TextBox x:Name="dayTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,80,0,0" Grid.Column="1"/>-->
                 <GroupBox Header="Płeć:" Height="72" Margin="0,104,0,272" Grid.ColumnSpan="2">
                     <Grid>
                         <RadioButton x:Name="WomanRadioButton" Content="Kobieta" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="46,0,0,0"/>

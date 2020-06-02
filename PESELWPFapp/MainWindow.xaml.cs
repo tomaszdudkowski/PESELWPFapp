@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
-using System.Windows.Documents;
+using System.Windows.Controls;
 using ToolsLibrary;
 
 namespace PESELWPFapp
@@ -13,9 +12,12 @@ namespace PESELWPFapp
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+            GenerateYearInComboBox(yearComboBox);
+            GenerateMonthInComboBox(monthComboBox);
         }
 
         #region Method
@@ -157,22 +159,93 @@ namespace PESELWPFapp
         }
         #endregion
 
+        #region GenerateYearInComboBox
+        private void GenerateYearInComboBox(ComboBox comboBox)
+        {
+            for (int i = 1800; i <= 2299; i++)
+            {
+                comboBox.Items.Add(i.ToString());
+            }
+        }
+        #endregion
+
+        #region GenerateMonthInComboBox
+        private void GenerateMonthInComboBox(ComboBox comboBox)
+        {
+            for (int i = 1; i <= 12; i++)
+            {
+                comboBox.Items.Add((MonthName)i);
+            }
+        }
+        #endregion
+
+        #region GenerateDayInComboBox
+        private void GenerateDayInComboBox(ComboBox comboBox, int year, int month)
+        {
+            comboBox.Items.Clear();
+            int dayNumber = PESELlib.IleDniMaMiesiac(year, month);
+            for (int i = 1; i <= dayNumber; i++)
+            {
+                comboBox.Items.Add(i);
+            }
+        }
+        #endregion
+
         #region GeneratePESELbutton
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int[] PESEL = new int[11];
-            string year = yearTextBox.Text;
-            int yearInt = Int32.Parse(yearTextBox.Text);
+
+            /// Use with WPF ComboBox
+             
+            /// Year
+            string year = yearComboBox.SelectedItem.ToString();
+            int yearInt = Int32.Parse(year);
             PESEL[0] = Int32.Parse(year[2].ToString());
             PESEL[1] = Int32.Parse(year[3].ToString());
-            string month = monthTextBox.Text;
-            int monthInt = Int32.Parse(monthTextBox.Text);
-            PESEL[2] = Int32.Parse(month[0].ToString());
+
+            /// Month
+            string month = monthComboBox.SelectedItem.ToString();
+            string monthNumber = "";
+            int monthInt = Int32.Parse(monthComboBox.SelectedIndex.ToString()) + 1;
+            if(monthInt <= 9)
+            {
+                monthNumber += "0";
+                monthNumber += monthInt.ToString();
+            }
+            PESEL[2] = Int32.Parse(monthNumber[0].ToString());
             PESEL[2] = CheckYear(yearInt, monthInt);
-            PESEL[3] = Int32.Parse(month[1].ToString());
-            string day = dayTextBox.Text;
-            PESEL[4] = Int32.Parse(day[0].ToString());
-            PESEL[5] = Int32.Parse(day[1].ToString());
+            PESEL[3] = Int32.Parse(monthNumber[1].ToString());
+
+            /// Day
+            string day = dayComboBox.SelectedItem.ToString();
+            string dayNumber = "";
+            int dayInt = Int32.Parse(dayComboBox.SelectedIndex.ToString()) + 1;
+            if(dayInt <= 9)
+            {
+                dayNumber += "0";
+                dayNumber += dayInt.ToString();
+            }
+            PESEL[4] = Int32.Parse(dayNumber[0].ToString());
+            PESEL[5] = Int32.Parse(dayNumber[1].ToString());
+
+            ///-----------------------------------------------
+            ///         Only use with WPF TextBox
+            ///-----------------------------------------------
+            //string year = yearTextBox.Text;
+            //int yearInt = Int32.Parse(yearTextBox.Text);
+            //string month = monthTextBox.Text;
+            //int monthInt = Int32.Parse(monthTextBox.Text);
+            //PESEL[2] = Int32.Parse(month[0].ToString());
+            //PESEL[2] = CheckYear(yearInt, monthInt);
+            //PESEL[3] = Int32.Parse(month[1].ToString());
+            //string day = dayTextBox.Text;
+            //PESEL[4] = Int32.Parse(day[0].ToString());
+            //PESEL[5] = Int32.Parse(day[1].ToString());
+            ///-----------------------------------------------
+            ///    Only use with WPF TextBox ----> END
+            ///-----------------------------------------------
+
             int fromSeries = Int32.Parse(fromSeriesTextBox.Text);
             int toSeries = Int32.Parse(toSeriesTextBox.Text);
             List<int[]> listOfPESEL = new List<int[]>();
@@ -245,8 +318,23 @@ namespace PESELWPFapp
                 alertSubWindow.AlertLabel.Content = "Nieprawidłowy numer PESEL";
             }
 
-
         }
         #endregion
+
+        private int yearFromComboBox;
+        private int monthFromComboBox;
+
+        private void yearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            yearFromComboBox = Int32.Parse(yearComboBox.SelectedItem.ToString());
+            Debug.WriteLine(yearFromComboBox);
+        }
+
+        private void monthComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            monthFromComboBox = (int)monthComboBox.SelectedItem;
+            Debug.WriteLine(monthFromComboBox);
+            GenerateDayInComboBox(dayComboBox, yearFromComboBox, monthFromComboBox);
+        }
     }
 }
