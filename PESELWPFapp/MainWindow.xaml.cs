@@ -235,6 +235,8 @@ namespace PESELWPFapp
                 subWindow.weekDayTextBox.Text = ToolsLibrary.PESELlib.NazwaDniaTygodnia(PESELlib.ZwrocDzienUrodzenia(Int32.Parse(subWindow.yearTextBox.Text), PESELlib.ZwrocMiesiacUrodzenia(arrayPESEL[2], arrayPESEL[3]), arrayPESEL[4], arrayPESEL[5]));
                 subWindow.peselTextBox.Text = peselTextBox.Text;
                 subWindow.genderTextBox.Text = ToolsLibrary.PESELlib.Plec(arrayPESEL[6], arrayPESEL[7], arrayPESEL[8], arrayPESEL[9]);
+                string serie = arrayPESEL[6].ToString() + arrayPESEL[7].ToString() + arrayPESEL[8].ToString() + arrayPESEL[9].ToString();
+                subWindow.seriesTextBox.Text = serie;
             }
             else
             {

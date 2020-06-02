@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="AlertSubWindow" Height="250" Width="400">
     <Grid x:Name="okButton">
-        <Label x:Name="AlertLabel" Content="" HorizontalAlignment="Left" Margin="167,58,0,0" VerticalAlignment="Top"/>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="166,145,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label x:Name="AlertLabel" Content="" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top" FontSize="16" FontWeight="Bold"/>
+        <Button Content="OK" HorizontalAlignment="Center" Margin="0,144,0,0" VerticalAlignment="Top" Click="Button_Click" Width="74" Height="33"/>
 
     </Grid>
 </Window>
