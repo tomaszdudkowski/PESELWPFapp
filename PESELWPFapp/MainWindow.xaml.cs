@@ -179,8 +179,6 @@ namespace PESELWPFapp
 
             int[] genderValue = new int[4];
 
-            string temporaryPESEL = "";
-
             listBoxPesel.Items.Clear();
 
             for (int i = fromSeries; i <= toSeries; i++)
@@ -188,36 +186,33 @@ namespace PESELWPFapp
                 if (i % 10 == 0 && WomanRadioButton.IsChecked == true)
                 {
                     genderValue = ToDigitArray(i);
-                    PESEL[6] = genderValue[0];
-                    PESEL[7] = genderValue[1];
-                    PESEL[8] = genderValue[2];
-                    PESEL[9] = genderValue[3];
-                    PESEL[10] = PESELlib.GenerujSumeKontrolna(PESEL);
-                    listOfPESEL.Add(PESEL);
-                    temporaryPESEL = "";
-                    for (int j = 0; j < 11; j++)
-                    {
-                        temporaryPESEL += PESEL[j];
-                    }
-                    listBoxPesel.Items.Add(temporaryPESEL);
+                    GenderValueRefill(PESEL, genderValue, listOfPESEL);
                 }
                 else if (i % 10 != 0 && MenRadioBotton.IsChecked == true)
                 {
                     genderValue = ToDigitArray(i);
-                    PESEL[6] = genderValue[0];
-                    PESEL[7] = genderValue[1];
-                    PESEL[8] = genderValue[2];
-                    PESEL[9] = genderValue[3];
-                    PESEL[10] = PESELlib.GenerujSumeKontrolna(PESEL);
-                    listOfPESEL.Add(PESEL);
-                    temporaryPESEL = "";
-                    for (int k = 0; k < 11; k++)
-                    {
-                        temporaryPESEL += PESEL[k];
-                    }
-                    listBoxPesel.Items.Add(temporaryPESEL);
+                    GenderValueRefill(PESEL, genderValue, listOfPESEL);
                 }
             }
+        }
+        #endregion
+
+        #region GenderValueRefill
+        private void GenderValueRefill(int[] PESEL, int[] genderValue, List<int[]> listOfPESEL)
+        {
+            string temporaryPESEL = "";
+            PESEL[6] = genderValue[0];
+            PESEL[7] = genderValue[1];
+            PESEL[8] = genderValue[2];
+            PESEL[9] = genderValue[3];
+            PESEL[10] = PESELlib.GenerujSumeKontrolna(PESEL);
+            listOfPESEL.Add(PESEL);
+            temporaryPESEL = "";
+            for (int k = 0; k < 11; k++)
+            {
+                temporaryPESEL += PESEL[k];
+            }
+            listBoxPesel.Items.Add(temporaryPESEL);
         }
         #endregion
 
@@ -229,7 +224,7 @@ namespace PESELWPFapp
             int length = peselTextBox.Text.Length;
             int[] arrayPESEL = ToolsLibrary.Helpers.LongToIntArray(PESEL, length);
 
-            if(ToolsLibrary.PESELlib.SumaKontrolna(arrayPESEL) == true)
+            if (ToolsLibrary.PESELlib.SumaKontrolna(arrayPESEL) == true)
             {
                 SubWindow subWindow = new SubWindow();
                 subWindow.Show();
@@ -240,14 +235,15 @@ namespace PESELWPFapp
                 subWindow.weekDayTextBox.Text = ToolsLibrary.PESELlib.NazwaDniaTygodnia(PESELlib.ZwrocDzienUrodzenia(Int32.Parse(subWindow.yearTextBox.Text), PESELlib.ZwrocMiesiacUrodzenia(arrayPESEL[2], arrayPESEL[3]), arrayPESEL[4], arrayPESEL[5]));
                 subWindow.peselTextBox.Text = peselTextBox.Text;
                 subWindow.genderTextBox.Text = ToolsLibrary.PESELlib.Plec(arrayPESEL[6], arrayPESEL[7], arrayPESEL[8], arrayPESEL[9]);
-            } else
+            }
+            else
             {
                 AlertSubWindow alertSubWindow = new AlertSubWindow();
                 alertSubWindow.Show();
                 alertSubWindow.AlertLabel.Content = "Nieprawidłowy numer PESEL";
             }
 
-            
+
         }
         #endregion
     }
