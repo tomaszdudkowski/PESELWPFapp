@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PESELWPFapp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="642" Width="800">
     <Grid>
         <!--<Label Content="SYSTEM  PESEL 1.0.0" HorizontalAlignment="Center" Margin="0,21,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" FontWeight="Normal"/>-->
-        <GroupBox Header="Generuj numer PESEL" HorizontalAlignment="Left" Height="505" Margin="26,51,0,0" VerticalAlignment="Top" Width="260">
+        <GroupBox Header="Generuj numer PESEL" HorizontalAlignment="Left" Height="505" Margin="26,26,0,0" VerticalAlignment="Top" Width="260">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80*"/>
@@ -40,10 +40,10 @@
                 <Label Content="Do serii:" Grid.Column="1" Margin="63,193,25,261"/>
                 <TextBox x:Name="toSeriesTextBox" HorizontalAlignment="Left" Margin="63,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="1"/>
                 <Button x:Name="generateButton" Content="Generuj PESEL" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" Margin="4,249,0,0" Grid.Column="1"/>
-                <ListBox x:Name="listBoxPesel" Height="180" Margin="8,0,10,21" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                <ListBox x:Name="listBoxPesel" Height="180" Margin="8,0,10,21" VerticalAlignment="Bottom" Grid.ColumnSpan="2" SelectionChanged="listBoxPesel_SelectionChanged"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Sprawdź numer PESEL" HorizontalAlignment="Left" Height="505" Margin="307,51,0,0" VerticalAlignment="Top" Width="465">
+        <GroupBox Header="Sprawdź numer PESEL" HorizontalAlignment="Left" Height="505" Margin="307,38,0,0" VerticalAlignment="Top" Width="465">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80*"/>
@@ -54,5 +54,8 @@
                 <Button x:Name="checkButton" Content="Sprawdź numer PESEL" Grid.Column="1" HorizontalAlignment="Left" Margin="40,71,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
             </Grid>
         </GroupBox>
+        <StatusBar x:Name="MainStatusBar" Margin="0,603,0,0">
+            <Label Content="Ready" FontSize="8" />
+        </StatusBar>
     </Grid>
 </Window>

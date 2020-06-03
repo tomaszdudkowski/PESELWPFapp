@@ -225,9 +225,14 @@ namespace PESELWPFapp
             {
                 dayNumber += "0";
                 dayNumber += dayInt.ToString();
+                PESEL[4] = Int32.Parse(dayNumber[0].ToString());
+                PESEL[5] = Int32.Parse(dayNumber[1].ToString());
+            } else
+            {
+                PESEL[4] = Int32.Parse(day[0].ToString());
+                PESEL[5] = Int32.Parse(day[1].ToString());
             }
-            PESEL[4] = Int32.Parse(dayNumber[0].ToString());
-            PESEL[5] = Int32.Parse(dayNumber[1].ToString());
+            
 
             ///-----------------------------------------------
             ///         Only use with WPF TextBox
@@ -335,6 +340,15 @@ namespace PESELWPFapp
             monthFromComboBox = (int)monthComboBox.SelectedItem;
             Debug.WriteLine(monthFromComboBox);
             GenerateDayInComboBox(dayComboBox, yearFromComboBox, monthFromComboBox);
+        }
+
+        private void listBoxPesel_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listBoxPesel.SelectedIndex > -1)
+            {
+                Clipboard.Clear();
+                Clipboard.SetText(listBoxPesel.SelectedItem.ToString());
+            }
         }
     }
 }
