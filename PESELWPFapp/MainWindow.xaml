@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:PESELWPFapp"
         mc:Ignorable="d"
         Title="MainWindow" Height="642" Width="800">
+    <!--<Label Content="SYSTEM  PESEL 1.0.0" HorizontalAlignment="Center" Margin="0,21,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" FontWeight="Normal"/>-->
     <Grid>
-        <!--<Label Content="SYSTEM  PESEL 1.0.0" HorizontalAlignment="Center" Margin="0,21,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" FontWeight="Normal"/>-->
         <GroupBox Header="Generuj numer PESEL" HorizontalAlignment="Left" Height="505" Margin="26,26,0,0" VerticalAlignment="Top" Width="260">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -16,17 +16,17 @@
                 </Grid.ColumnDefinitions>
                 <Label x:Name="yearLabel" Content="Rok:" Margin="20,15,0,0" Grid.ColumnSpan="2"/>
                 <StackPanel Margin="20,18,0,0" Grid.Column="1">
-                    <ComboBox x:Name="yearComboBox" Width="120" SelectionChanged="yearComboBox_SelectionChanged"/>
+                    <ComboBox x:Name="yearComboBox" Width="120" SelectionChanged="yearComboBox_SelectionChanged" MouseEnter="yearComboBox_MouseEnter" MouseLeave="yearComboBox_MouseLeave"/>
                 </StackPanel>
                 <!--<TextBox x:Name="yearTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,20,0,0" Grid.Column="1"/>-->
                 <Label x:Name="monthLabel" Content="Miesiąc:" Margin="20,45,0,0" Grid.ColumnSpan="2"/>
                 <StackPanel Margin="20,48,0,0" Grid.Column="1">
-                    <ComboBox x:Name="monthComboBox" Width="120" SelectionChanged="monthComboBox_SelectionChanged"/>
+                    <ComboBox x:Name="monthComboBox" Width="120" SelectionChanged="monthComboBox_SelectionChanged" MouseEnter="monthComboBox_MouseEnter" MouseLeave="monthComboBox_MouseLeave"/>
                 </StackPanel>
                 <!--<TextBox x:Name="monthTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,50,0,0" Grid.Column="1"/>-->
                 <Label x:Name="dayLabel" Content="Dzień:" Margin="20,75,0,0" Grid.ColumnSpan="2"/>
                 <StackPanel Margin="20,78,0,0" Grid.Column="1">
-                    <ComboBox x:Name="dayComboBox" Width="120"/>
+                    <ComboBox x:Name="dayComboBox" Width="120" MouseEnter="dayComboBox_MouseEnter" MouseLeave="dayComboBox_MouseLeave"/>
                 </StackPanel>
                 <!--<TextBox x:Name="dayTextBox" HorizontalAlignment="Left" Text="" VerticalAlignment="Top" Width="120" Margin="40,80,0,0" Grid.Column="1"/>-->
                 <GroupBox Header="Płeć:" Height="72" Margin="0,104,0,272" Grid.ColumnSpan="2">
@@ -54,8 +54,11 @@
                 <Button x:Name="checkButton" Content="Sprawdź numer PESEL" Grid.Column="1" HorizontalAlignment="Left" Margin="40,71,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
             </Grid>
         </GroupBox>
-        <StatusBar x:Name="MainStatusBar" Margin="0,603,0,0">
-            <Label Content="Ready" FontSize="8" />
+        <StatusBar VerticalAlignment="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text=""/>
+            </StatusBarItem>
         </StatusBar>
     </Grid>
+    
 </Window>

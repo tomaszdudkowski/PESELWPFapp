@@ -18,6 +18,7 @@ namespace PESELWPFapp
             InitializeComponent();
             GenerateYearInComboBox(yearComboBox);
             GenerateMonthInComboBox(monthComboBox);
+            StatusText.Text = "Ready.";
         }
 
         #region Method
@@ -197,7 +198,7 @@ namespace PESELWPFapp
             int[] PESEL = new int[11];
 
             /// Use with WPF ComboBox
-             
+
             /// Year
             string year = yearComboBox.SelectedItem.ToString();
             int yearInt = Int32.Parse(year);
@@ -208,7 +209,7 @@ namespace PESELWPFapp
             string month = monthComboBox.SelectedItem.ToString();
             string monthNumber = "";
             int monthInt = Int32.Parse(monthComboBox.SelectedIndex.ToString()) + 1;
-            if(monthInt <= 9)
+            if (monthInt <= 9)
             {
                 monthNumber += "0";
                 monthNumber += monthInt.ToString();
@@ -221,18 +222,19 @@ namespace PESELWPFapp
             string day = dayComboBox.SelectedItem.ToString();
             string dayNumber = "";
             int dayInt = Int32.Parse(dayComboBox.SelectedIndex.ToString()) + 1;
-            if(dayInt <= 9)
+            if (dayInt <= 9)
             {
                 dayNumber += "0";
                 dayNumber += dayInt.ToString();
                 PESEL[4] = Int32.Parse(dayNumber[0].ToString());
                 PESEL[5] = Int32.Parse(dayNumber[1].ToString());
-            } else
+            }
+            else
             {
                 PESEL[4] = Int32.Parse(day[0].ToString());
                 PESEL[5] = Int32.Parse(day[1].ToString());
             }
-            
+
 
             ///-----------------------------------------------
             ///         Only use with WPF TextBox
@@ -344,11 +346,41 @@ namespace PESELWPFapp
 
         private void listBoxPesel_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(listBoxPesel.SelectedIndex > -1)
+            if (listBoxPesel.SelectedIndex > -1)
             {
                 Clipboard.Clear();
                 Clipboard.SetText(listBoxPesel.SelectedItem.ToString());
             }
+        }
+
+        private void yearComboBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            StatusText.Text = "Wybierz rok urodzenia.";
+        }
+
+        private void yearComboBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            StatusText.Text = "Gotowy.";
+        }
+
+        private void monthComboBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            StatusText.Text = "Wybierz miesiąc urodzenia.";
+        }
+
+        private void monthComboBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            StatusText.Text = "Gotowy.";
+        }
+
+        private void dayComboBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            StatusText.Text = "Wybierz dzień urodzenia.";
+        }
+
+        private void dayComboBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            StatusText.Text = "Gotowy.";
         }
     }
 }
