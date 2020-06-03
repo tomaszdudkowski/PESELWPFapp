@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PESELWPFapp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="642" Width="800">
+        Title="MainWindow" Height="642" Width="800"
+        ContentRendered="Window_ContentRendered">
     <!--<Label Content="SYSTEM  PESEL 1.0.0" HorizontalAlignment="Center" Margin="0,21,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Impact" FontWeight="Normal"/>-->
     <Grid>
         <GroupBox Header="Generuj numer PESEL" HorizontalAlignment="Left" Height="505" Margin="26,26,0,0" VerticalAlignment="Top" Width="260">
@@ -57,6 +58,10 @@
         <StatusBar VerticalAlignment="Bottom">
             <StatusBarItem>
                 <TextBlock x:Name="StatusText" Text=""/>
+            </StatusBarItem>
+            <Separator></Separator>
+            <StatusBarItem>
+                <ProgressBar Minimum="0" Maximum="100" Width="90" Height="16" x:Name="progressBar"/>
             </StatusBarItem>
         </StatusBar>
     </Grid>

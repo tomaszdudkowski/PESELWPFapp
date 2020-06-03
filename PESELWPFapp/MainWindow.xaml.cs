@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using ToolsLibrary;
@@ -196,7 +197,7 @@ namespace PESELWPFapp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int[] PESEL = new int[11];
-
+            progressBar.Visibility = Visibility.Visible;
             /// Use with WPF ComboBox
 
             /// Year
@@ -263,6 +264,7 @@ namespace PESELWPFapp
 
             for (int i = fromSeries; i <= toSeries; i++)
             {
+                progressBar.Value++;
                 if (i % 10 == 0 && WomanRadioButton.IsChecked == true)
                 {
                     genderValue = ToDigitArray(i);
@@ -274,6 +276,9 @@ namespace PESELWPFapp
                     GenderValueRefill(PESEL, genderValue, listOfPESEL);
                 }
             }
+            Thread.Sleep(100);
+            progressBar.Visibility = Visibility.Hidden;
+            progressBar.Value = 0;
         }
         #endregion
 
@@ -296,11 +301,18 @@ namespace PESELWPFapp
         }
         #endregion
 
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            progressBar.Value = 0;
+            progressBar.Visibility = Visibility.Hidden;
+        }
+
         #region CheckPESELNumber
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             long PESEL = Int64.Parse(peselTextBox.Text);
-
+            
+            Thread.Sleep(10);
             int length = peselTextBox.Text.Length;
             int[] arrayPESEL = ToolsLibrary.Helpers.LongToIntArray(PESEL, length);
 
@@ -324,7 +336,6 @@ namespace PESELWPFapp
                 alertSubWindow.Show();
                 alertSubWindow.AlertLabel.Content = "Nieprawidłowy numer PESEL";
             }
-
         }
         #endregion
 
